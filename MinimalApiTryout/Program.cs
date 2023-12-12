@@ -5,6 +5,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<ClassLibraryEntryPoint>());
 builder.Services.AddTransient(typeof(IPipelineBehavior<NewIpInfoRequest, string>), typeof(NewIpInfoPipelineBehavior));
+builder.Services.AddDbContext<AppDbContext>();
 
 var app = builder.Build();
 app.UseSwagger();
