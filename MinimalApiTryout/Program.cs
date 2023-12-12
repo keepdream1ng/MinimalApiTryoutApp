@@ -12,7 +12,9 @@ app.UseSwagger();
 app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
-app.MapGet("/api/{ip}", async (IMediator mediator, string ip) =>
+app.MapGet("/api/ipinfo/{ip}", async (IMediator mediator, string ip) =>
 	await mediator.Send(new NewIpInfoRequest(ip)));
+app.MapGet("/api/iprequests", async (IMediator mediator) =>
+	await mediator.Send(new GetAllRequestsQuery()));
 
 app.Run();
