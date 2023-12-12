@@ -4,6 +4,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<ClassLibraryEntryPoint>());
+builder.Services.AddTransient(typeof(IPipelineBehavior<NewIpInfoRequest, string>), typeof(NewIpInfoPipelineBehavior));
 
 var app = builder.Build();
 app.UseSwagger();

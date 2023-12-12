@@ -19,6 +19,7 @@ public class NewIpInfoRequestHandler : IRequestHandler<NewIpInfoRequest, string>
 	{
 		string url = _configuration["IpInfoProvider"].Replace("{RequestIp}", request.Ip);
 		using var httpClient = _httpClientFactory.CreateClient();
-		return await httpClient.GetStringAsync(url);
+		HttpResponseMessage response = await httpClient.GetAsync(url);
+		return await response.Content.ReadAsStringAsync();
 	}
 }
